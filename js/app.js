@@ -39,15 +39,14 @@ const addPhraseToDisplay = (arr) => {
 
 const displayPhrase = addPhraseToDisplay(phraseArray);
 
-const checkLetter = (btn) => {
-    let match;
+
+const checkLetter = (btn) => { 
+    let match = null;
     const letters = document.querySelectorAll('.letter');
     for(const letter of letters){
         if(letter.textContent === btn.textContent){
-            match = letter.classList.add('show');
-        }else if (letter.className !== 'show'){
-            match = null;
-        }
+           letter.classList.add('show');
+           match = letter.textContent}
     }
     return match;
  }
@@ -60,8 +59,11 @@ keyboard.addEventListener('click', e => {
         button.disabled = true;
     }
     const letterFound = checkLetter(button);
-    // if(letterFound.className !== 'show'){
-    //     console.log('no')
-    // }
+        for(const trial of tries){
+            if(letterFound === null){
+            }
+        }
+       
+
 })
 
