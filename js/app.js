@@ -4,13 +4,6 @@ const startBtn = document.querySelector('.btn__reset');
 const ul = document.querySelector('ul');
 const tries = document.querySelectorAll('.tries')
 
-// loop through the buttons
-// const button = () => {
-//     for(const btn of buttons){
-//         return btn
-//     }
-// }
-
 // All phrases
 const phrases = ['see eye to eye', 'the best of both worlds', 'speak of the devil', 'break a leg',  'blessing in disguise']
 let missed = 0;
@@ -47,15 +40,14 @@ const addPhraseToDisplay = (arr) => {
 const displayPhrase = addPhraseToDisplay(phraseArray);
 
 const checkLetter = (btn) => {
+    let match;
     const letters = document.querySelectorAll('.letter');
-    let match = '';
     for(const letter of letters){
-        if(letter.innerHTML === btn.textContent){
+        if(letter.textContent === btn.textContent){
             match = letter.classList.add('show');
-        }else{
+        }else if (letter.className !== 'show'){
             match = null;
         }
-        
     }
     return match;
  }
@@ -68,13 +60,8 @@ keyboard.addEventListener('click', e => {
         button.disabled = true;
     }
     const letterFound = checkLetter(button);
-    return letterFound;
+    // if(letterFound.className !== 'show'){
+    //     console.log('no')
+    // }
 })
 
-const triesCount = () => {
-    if(letterFound === null){
-        for(const trial of tries){
-            trial.style.visibility = 'hidden';
-        }
-    }
-}
