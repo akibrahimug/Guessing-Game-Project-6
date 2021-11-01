@@ -5,10 +5,16 @@ const ul = document.querySelector('ul');
 const tries = document.querySelectorAll('.tries');
 const h2 = document.querySelector('h2');
 const overlay = document.getElementById('overlay');
+const images = document.getElementsByTagName('img');
 
 
 // All phrases
-const phrases = ['see eye to eye', 'the best of both worlds', 'speak of the devil', 'break a leg',  'blessing in disguise']
+const phrases = [
+    'see eye to eye', 
+    'the best of both worlds', 
+    'speak of the devil', 
+    'break a leg',  
+    'blessing in disguise']
 let missed = 0;
 
 // Remove the OverLayed Starting page
@@ -65,8 +71,8 @@ keyboard.addEventListener('click', e => {
     const letterFound = checkLetter(button);
     // removing the hearts that keep track of the wrong buttons pressed
         if(letterFound === null && button.tagName === "BUTTON"){
-            if (missed < tries.length){
-               tries[missed].innerHTML = `<img src = "images/lostHeart.png">`;
+            if (missed < images.length){
+                images[missed].src = 'images/lostHeart.png'
                 missed ++;
             }
         }
@@ -79,8 +85,36 @@ const winLose = (classItem, h2Content, startBtnContent) => {
     h2.textContent = h2Content;
     startBtn.textContent = startBtnContent;
     startBtn.addEventListener('click', e => {
-        overlay.style.visibility = 'visible';
-        window.location.reload();
+        
+        overlay.style.visibility = 'hidden';
+        // button reset
+        const keyrows = document.querySelectorAll('.keyrow')
+        for(const keyrow of keyrows){
+            const buttons = keyrow.childNodes;
+            for(const button of buttons){
+                if(button.tagName === "BUTTON"){
+                    button.classList.remove('chosen')
+                    button.disabled = false;
+                }
+            }
+        }
+        // phrase reset
+        const letters = document.querySelectorAll('.letter');
+        for(const letter of letters){
+            letter.classList.remove('show')
+        }
+        // reset heart count
+        if(missed === images.length){
+            for(const image of images){
+                image.src = 'images/liveHeart.png';
+                missed = 0;
+            }
+            // new random phrase
+
+
+
+            
+        }
     })
 }
 
