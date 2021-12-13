@@ -1,4 +1,4 @@
-# Guessing-Game-Project-6
+# Guessing-Game
 
 This is a course project that uses Javascript/Html/Css with DOM manipulation to guess the right letters in a random word.
 
